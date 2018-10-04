@@ -7,6 +7,7 @@ import com.netflix.discovery.converters.Auto;
 import com.util.ResultBean;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@EnableEurekaClient
 @RestController
+@RequestMapping("/user")
 public class UserLoginController {
     @Autowired
     private UserMapper userMapper;
@@ -31,6 +34,13 @@ public class UserLoginController {
         ResultBean result = new ResultBean();
         result.setData(userMapper.getUser(json.getString("password")));
         return result;
+    }
+
+    @GetMapping("/login/{userId}")
+    private String getUserById(@PathVariable String userId){
+        ResultBean result = new ResultBean();
+        String userName = userMapper.getUser(userId).getUserName();
+        return userName;
     }
 
     @PostMapping("/register")

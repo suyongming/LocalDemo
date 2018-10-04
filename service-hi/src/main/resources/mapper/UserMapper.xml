@@ -5,16 +5,16 @@
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
         <result property="password" column="password"/>
-        <result property="craterTime" column="creater_time"/>
+        <result property="create" column="crater_time"/>
         <result property="lastModifyTime" column="last_modify_time"/>
     </resultMap>
 
     <select id="getUser" resultMap="resultBean" parameterType="java.lang.String">
-        select * from user where password = #{password}
+        select * from tb_user where password = #{password}
     </select>
 
     <insert id="addUser" parameterType="com.entity.User">
-        insert into user(user_id,user_name,password,creater_time,last_modify_time)
+        insert into tb_user(user_id,user_name,password,creater_time,last_modify_time)
         values(#{userId},#{userName},#{password},now(),now())
     </insert>
 </mapper>

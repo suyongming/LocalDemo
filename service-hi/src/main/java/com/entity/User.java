@@ -15,7 +15,7 @@ public class User {
 
     private String password;
 
-    private Timestamp craterTime;
+    private Timestamp create;
 
     private Timestamp lastModifyTime;
 
