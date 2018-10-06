@@ -7,9 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-/**
- * Created by forezp on 2017/4/8.
- */
 @Component
 public class MyFilter extends ZuulFilter{
 
