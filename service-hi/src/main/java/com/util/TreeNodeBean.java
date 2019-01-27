@@ -81,12 +81,12 @@ public class TreeNodeBean<T extends TreeModelEntity>{
     /**
      * 根据序号查找对应节点
      * */
-    public TreeNodeBean<T> findBySort(int sort,TreeNodeBean<T> treeNodeBean){
-        if(sort < treeNodeBean.getNumber()) {
-            return findBySort(sort,treeNodeBean.getLiftChild());
-        } else if(sort > treeNodeBean.getNumber()){
+    public TreeNodeBean<T> findBySort(int number,TreeNodeBean<T> treeNodeBean){
+        if(number < treeNodeBean.getNumber()) {
+            return findBySort(number,treeNodeBean.getLiftChild());
+        } else if(number > treeNodeBean.getNumber()){
 
-            return findBySort(sort,treeNodeBean.getRightChild());
+            return findBySort(number,treeNodeBean.getRightChild());
         }else{
             return treeNodeBean;
         }
@@ -113,6 +113,58 @@ public class TreeNodeBean<T extends TreeModelEntity>{
         }
 
         return sortList;
+    }
+
+    /**
+     * 删除节点
+     * */
+    public TreeNodeBean<T> deleteByNumber(int number,TreeNodeBean<T> treeNodeBean){
+        if(treeNodeBean.getLiftChild() == null && treeNodeBean.getRightChild() == null){
+            return null;
+        }
+//        不可遍历删除,否则很慢
+        if(number < treeNodeBean.getNumber()) {
+            TreeNodeBean afterNode = deleteByNumber(number,treeNodeBean.getLiftChild());
+            treeNodeBean.setLiftChild(afterNode);
+            return treeNodeBean;
+
+        } else if(number > treeNodeBean.getNumber()){
+            TreeNodeBean afterNode = deleteByNumber(number,treeNodeBean.getRightChild());
+            treeNodeBean.setRightChild(afterNode);
+            return treeNodeBean;
+
+        }else{
+            //找到该节点 开始删除(修改当前节点)
+            if(treeNodeBean.getLiftChild() != null && treeNodeBean.getLiftChild() != null){
+                //如果删除的节点俩儿子都在
+                String oldParentCode = treeNodeBean.getParentCode();
+                TreeNodeBean oldRightChild = treeNodeBean.getRightChild();
+                oldRightChild.setParentCode(oldParentCode);
+
+                //删除重新赋值
+                TreeNodeBean newTree = treeNodeBean.getLiftChild();
+                newTree.setParentCode(oldParentCode);
+                newTree.setRightChild(oldRightChild);
+                return newTree;
+            }else if(treeNodeBean.getLiftChild() == null && treeNodeBean.getRightChild() != null){
+                //如果只有右边的儿子节点
+                String oldParentCode = treeNodeBean.getParentCode();
+                TreeNodeBean newTree = treeNodeBean.getRightChild();
+                newTree.setParentCode(oldParentCode);
+                return newTree;
+            }else if(treeNodeBean.getLiftChild() != null && treeNodeBean.getRightChild() == null){
+                //如果只有左边的儿子节点
+                String oldParentCode = treeNodeBean.getParentCode();
+                TreeNodeBean newTree = treeNodeBean.getLiftChild();
+                newTree.setParentCode(oldParentCode);
+                return newTree;
+            }else{
+                //如果没儿子
+                return null;
+            }
+
+        }
+
     }
 
 

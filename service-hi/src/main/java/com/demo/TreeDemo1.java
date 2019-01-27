@@ -13,27 +13,29 @@ public class TreeDemo1 {
         //测试单位为纳秒
 //        getTestingTime();
         TreeNodeBean treeNodeBean = push();
-        List<TreeModelEntity> resultList = treeNodeBean.sort(treeNodeBean);
-        resultList.forEach(ele->{
-            System.out.println(ele.getSort());
+        TreeNodeBean afterNode = treeNodeBean.deleteByNumber(26,treeNodeBean);
+                List<TreeModelEntity> resultList = treeNodeBean.sort(afterNode);
+        resultList.forEach(node->{
+            System.out.println(node.getSort());
         });
+        System.out.println(" ");
 
 
     }
     private static TreeNodeBean push(){
         List<TreeModelEntity> result = new ArrayList<>();
 
-        for(int flag = 1; flag <= 100000;flag++){
+        for(int flag = 1; flag <= 50;flag++){
             TreeModelEntity obj = new TreeModelEntity();
             Random random = new Random();
             //乱序设值，为了校验二叉树
-            obj.setSort(random.nextInt(500000));
+            obj.setSort(random.nextInt(100));
             obj.setName("张"+flag);
             result.add(obj);
         }
         TreeModelEntity obj = new TreeModelEntity();
-        obj.setSort(34533);
-        obj.setName("张"+34533);
+        obj.setSort(26);
+        obj.setName("张"+26);
         result.add(obj);
 
         TreeNodeBean<TreeModelEntity> treeNodeBean = new TreeNodeBean<>();
