@@ -1,6 +1,6 @@
 package com.util;
 
-import com.entity.base.TreeModelEntity;
+import com.entity.base.TreeModel;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public class TreeNodeBean<T extends TreeModelEntity>{
+public class TreeNodeBean<T extends TreeModel>{
     //不可以用TreeNodeBean类型 否则有StackOverflowError风险
     private String parentCode;
 

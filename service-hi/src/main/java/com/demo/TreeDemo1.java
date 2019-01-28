@@ -1,6 +1,6 @@
 package com.demo;
 
-import com.entity.base.TreeModelEntity;
+import com.entity.base.TreeModel;
 import com.util.TreeNodeBean;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class TreeDemo1 {
 //        getTestingTime();
         TreeNodeBean treeNodeBean = push();
         TreeNodeBean afterNode = treeNodeBean.deleteByNumber(26,treeNodeBean);
-                List<TreeModelEntity> resultList = treeNodeBean.sort(afterNode);
+                List<TreeModel> resultList = treeNodeBean.sort(afterNode);
         resultList.forEach(node->{
             System.out.println(node.getSort());
         });
@@ -23,22 +23,22 @@ public class TreeDemo1 {
 
     }
     private static TreeNodeBean push(){
-        List<TreeModelEntity> result = new ArrayList<>();
+        List<TreeModel> result = new ArrayList<>();
 
         for(int flag = 1; flag <= 50;flag++){
-            TreeModelEntity obj = new TreeModelEntity();
+            TreeModel obj = new TreeModel();
             Random random = new Random();
             //乱序设值，为了校验二叉树
             obj.setSort(random.nextInt(100));
             obj.setName("张"+flag);
             result.add(obj);
         }
-        TreeModelEntity obj = new TreeModelEntity();
+        TreeModel obj = new TreeModel();
         obj.setSort(26);
         obj.setName("张"+26);
         result.add(obj);
 
-        TreeNodeBean<TreeModelEntity> treeNodeBean = new TreeNodeBean<>();
+        TreeNodeBean<TreeModel> treeNodeBean = new TreeNodeBean<>();
         result.forEach(node->{
             treeNodeBean.push(treeNodeBean,node);
         });
@@ -47,17 +47,17 @@ public class TreeDemo1 {
     }
 
     private static void getTestingTime(){
-        List<TreeModelEntity> result = new ArrayList<>();
+        List<TreeModel> result = new ArrayList<>();
 
         for(int flag = 1; flag <= 50;flag++){
-            TreeModelEntity obj = new TreeModelEntity();
+            TreeModel obj = new TreeModel();
             Random random = new Random();
             //乱序设值，为了校验二叉树
             obj.setSort(random.nextInt(500000));
             obj.setName("张"+flag);
             result.add(obj);
         }
-        TreeModelEntity obj = new TreeModelEntity();
+        TreeModel obj = new TreeModel();
         obj.setSort(34533);
         obj.setName("张"+34533);
         result.add(obj);
@@ -76,7 +76,7 @@ public class TreeDemo1 {
 
 
         //----------------二叉树查找
-        TreeNodeBean<TreeModelEntity> treeNodeBean = new TreeNodeBean<>();
+        TreeNodeBean<TreeModel> treeNodeBean = new TreeNodeBean<>();
         result.forEach(node->{
             treeNodeBean.push(treeNodeBean,node);
         });
