@@ -89,6 +89,19 @@
 			<version>3.15</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv -->
+		<dependency>
+			<groupId>org.bytedeco.javacpp-presets</groupId>
+			<artifactId>opencv</artifactId>
+			<version>3.4.3-1.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>javacpp</artifactId>
+			<version>1.4.3</version>
+		</dependency>
+
+
     </dependencies>
 
 	<dependencyManagement>
