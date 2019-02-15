@@ -74,15 +74,10 @@ public class OpenCVUtil extends JPanel{
                     height+frame.getInsets().top+frame.getInsets().bottom);
 
             Mat capImg = new Mat();
-            Mat temp=new Mat();
             //Random r = new Random();
             while(frame.isShowing()){
                 //获取视频帧
                 capture.read(capImg);
-                //转换为灰度图
-//                Imgproc.cvtColor(capImg, temp, Imgproc.COLOR_RGB2GRAY);
-                //识别人脸
-//                Mat image = detectFace(capImg);
                 //转为图像显示
                 panel.mImg = panel.mat2BI(capImg);
                 panel.repaint();
