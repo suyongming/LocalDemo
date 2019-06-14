@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author 方银�?
  * 本类描述子弹
  *
  */

@@ -9,7 +9,6 @@ import javax.swing.JDialog;
 
 /**
  * 
- * @author 方银�?
  * 本类描述飞机爆炸
  *
  */

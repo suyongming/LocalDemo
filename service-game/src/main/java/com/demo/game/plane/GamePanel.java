@@ -20,31 +20,30 @@ import javax.swing.JPanel;
 
 /**
  * 
- * @author 方银�?
- * 本类描述游戏�?始界�?
+ * 本类描述游戏?始界?
  *
  */
 
 public class GamePanel extends JPanel {
 	
 	private Image bg1, bg2;//图片
-	private final int SCREEN_WIDTH = 800;//屏幕�?
-	private final int SCREEN_HEIGHT = 600;//屏幕�?
-	static final int MAP_WIDTH = 600;//地图面板�?
-	static final int MAP_HEIGHT = 600;//地图面板�?
-	static final int BULLET_WIDTH = 15;//子弹�?
-	static final int BULLET_HEIGHT = 30;//子弹�?
+	private final int SCREEN_WIDTH = 800;//屏幕?
+	private final int SCREEN_HEIGHT = 600;//屏幕?
+	static final int MAP_WIDTH = 600;//地图面板?
+	static final int MAP_HEIGHT = 600;//地图面?
+	static final int BULLET_WIDTH = 15;//子弹
+	static final int BULLET_HEIGHT = 30;//子弹?
 	static final int PLANE_SIZE = 100;//玩家飞机边长
 	static final int ENEMY_SIZE = 80;//敌机边长
-	static final int BOSS_WIDTH = 250;//boss�?
-	static final int BOSS_HEIGHT = 180;//boss�?
+	static final int BOSS_WIDTH = 250;//boss?
+	static final int BOSS_HEIGHT = 180;//boss?
 	private int bg1_y;//bg1图片的y坐标
 	private int bg2_y;//bg2图片的y坐标
-	private boolean isRunning = false;//线程是否循环的标�?
+	private boolean isRunning = false;//线程是否循环的标?
 	private Canvas jp;//地图面板
 	private JButton jb1, jb2, jb3;//按钮
 	private JLabel jl;//标签
-	private MainPanel m;//主面板对�?
+	private MainPanel m;//主面板对?
 	static long sum;//分数
 	static int live;//玩家飞机生命
 	static int live1;//boss飞机生命
@@ -52,7 +51,7 @@ public class GamePanel extends JPanel {
 	static int time;//计时
 	static long before_time2 = System.currentTimeMillis();//过去绘制boss子弹时间
 	
-	//双缓�?
+	//双缓?
 	private Image iBuffer;
 	private Graphics gBuffer;
 
@@ -62,15 +61,15 @@ public class GamePanel extends JPanel {
 		bg2_y = -SCREEN_HEIGHT;//bg2图片的y坐标
 		
 		
-		setLayout(null);//清除布局管理�?
+		setLayout(null);//清除布局管理?
 		setBackground(new Color(83, 163, 238));
 		
 		showPanel();//设置界面
 		
-		this.m = m;//主面板对象将地址传过�?
+		this.m = m;//主面板对象将地址传过?
 		
-		live = 100;//生命初始�?
-		live1 = 2000;//boss生命初始�?
+		live = 100;//生命初始?
+		live1 = 2000;//boss生命初始?
 		
 	}
 	/**
@@ -78,7 +77,7 @@ public class GamePanel extends JPanel {
 	 */
 	private void showPanel() {
 		
-		sum = 0;//设置分数显示�?0
+		sum = 0;//设置分数显示?0
 		
 		//设置地图面板
 		jp = new MapPanel();
@@ -86,7 +85,7 @@ public class GamePanel extends JPanel {
 		add(jp);
 		
 		//设置按钮
-		jb1 = new JButton("�?�?(P)");
+		jb1 = new JButton("暂停(P)");
 		jb1.setBounds(50, 60, 100, 50);
 		add(jb1);
 		jb1.addActionListener(new ActionListener() {
@@ -94,12 +93,12 @@ public class GamePanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				stop_start();//暂停和开始监�?
+				stop_start();//暂停和开始监?
 				
 			}
 		});
 		
-		jb2 = new JButton("重新�?�?");
+		jb2 = new JButton("重新开始");
 		jb2.setBounds(50, 140, 100, 50);
 		add(jb2);
 		jb2.addActionListener(new ActionListener() {
@@ -112,23 +111,23 @@ public class GamePanel extends JPanel {
 				jp = new MapPanel();
 				jp.setBounds(200, 0, 600, 600);
 				add(jp);
-				//让游戏暂�?
+				//让游戏暂?
 				isRunning = false;
-				jb1.setText("�?�?(P)");//改变按钮文字
+				jb1.setText("暂停(P)");//改变按钮文字
 				Bullet.before_time = System.currentTimeMillis();
 				
-				jb1.setEnabled(true);//设置暂停\�?始按钮为可按
-				sum = 0;//设置分数显示�?0
+				jb1.setEnabled(true);//设置暂停\?始按钮为可按
+				sum = 0;//设置分数显示?0
 				
-				live = 100;//设置生命�?100
-				live1 = 2000;//设置boss生命�?2000
+				live = 100;//设置生命?100
+				live1 = 2000;//设置boss生命?2000
 				
 				time = 0;//赋予时间
 
 			}
 		});
 		
-		jb3 = new JButton("返回主菜�?");
+		jb3 = new JButton("返回主菜单?");
 		jb3.setBounds(50, 220, 100, 50);
 		add(jb3);
 		jb3.addActionListener(new ActionListener() {
@@ -150,7 +149,7 @@ public class GamePanel extends JPanel {
 			}
 		});
 		
-		//设置标签，用于存放分�?
+		//设置标签，用于存放分?
 		jl = new JLabel("0", JLabel.CENTER);
 		jl.setBounds(40, 300, 120, 50);
 		jl.setFont(new Font("acefont-family", Font.BOLD, 30));
@@ -160,7 +159,7 @@ public class GamePanel extends JPanel {
 	
 	/**
 	 * 
-	 * @author 方银�?
+	 * @author 方银?
 	 * 本内部类描述地图面板
 	 *
 	 */
@@ -174,9 +173,9 @@ public class GamePanel extends JPanel {
 		private ArrayList<Bullet> array;//玩家飞机子弹数组
 		private ArrayList<Bullet> array1;//敌机子弹数组
 		private Enemy[] e_array;//敌机数组
-		private Collide c;//碰撞判断的对�?
-		private Image x;//�?条图片对�?
-		private ArrayList<Bullet[]> arr;//boss子子弹数�?
+		private Collide c;//碰撞判断的对?
+		private Image x;//?条图片对?
+		private ArrayList<Bullet[]> arr;//boss子子弹数?
 		
 		
 		MapPanel() {
@@ -191,35 +190,35 @@ public class GamePanel extends JPanel {
 			//创建boss飞机对象
 			bp = new BossPlane();
 			
-			array = new ArrayList<Bullet>();//初始化玩家飞机子弹数�?
-			array1 = new ArrayList<Bullet>();//初始化敌机子弹数�?
+			array = new ArrayList<Bullet>();//初始化玩家飞机子弹数?
+			array1 = new ArrayList<Bullet>();//初始化敌机子弹数?
 			arr = new ArrayList<Bullet[]>();//初始化boss子弹数组
 			
 			e_array = new Enemy[8];//创建敌机数组
 			
 			c = new Collide();
 			
-			adapter();//暂停快捷键�?�P”监�?
+			adapter();//暂停快捷键?P”监?
 			
-			//初始化敌机数�?
+			//初始化敌机数?
 			for(int i = 0; i < e_array.length; i++)
 				e_array[i] = new Enemy((-i-1)*ENEMY_SIZE-BULLET_HEIGHT);
 			
 			th = new Thread(this);//创建线程
-			th.start();//�?启线�?
+			th.start();//?启线?
 						
 		}
 		/**
-		 * 此方法是回调函数paint，用于绘制界�?
+		 * 此方法是回调函数paint，用于绘制界?
 		 */
 		public void paint(Graphics g) {
 			
 			jl.setText("" + sum);//显示分数
 			
 //			if(sum == 30000) {
-//				jb1.setEnabled(false);//设置暂停\�?始按钮为不可�?
-//				isRunning = false;//设置线程不循�?
-//				new Dialog(m, 2);//挑战成功对话�?
+//				jb1.setEnabled(false);//设置暂停\?始按钮为不可?
+//				isRunning = false;//设置线程不循?
+//				new Dialog(m, 2);//挑战成功对话?
 //			}
 			
 			if(iBuffer == null)
@@ -253,9 +252,9 @@ public class GamePanel extends JPanel {
 					before_time2 = System.currentTimeMillis();
 				}
 				if(!bp.stayed && bp.id == 30) {
-					jb1.setEnabled(false);//设置暂停\�?始按钮为不可�?
-					isRunning = false;//设置线程不循�?
-					new Dialog(m, 2);//挑战成功对话�?
+					jb1.setEnabled(false);//设置暂停\?始按钮为不可?
+					isRunning = false;//设置线程不循?
+					new Dialog(m, 2);//挑战成功对话?
 				}
 				bp.drawBoss(gBuffer, this);//绘制boss飞机
 			}
@@ -269,12 +268,12 @@ public class GamePanel extends JPanel {
 					array.get(i).drawBullet(gBuffer, this, 1);//子弹绘制
 				}
 			} else if(mp.id == 30){
-				jb1.setEnabled(false);//设置暂停\�?始按钮为不可�?
-				isRunning = false;//设置线程不循�?
-				new Dialog(m, 1);//打开对话�?
+				jb1.setEnabled(false);//设置暂停?始按钮为不可?
+				isRunning = false;//设置线程不循?
+				new Dialog(m, 1);//打开对话?
 			}
 			
-			//绘制敌机、敌机子�?
+			//绘制敌机、敌机子?
 			for(int i = 0; i < e_array.length; i++)
 			{
 				e_array[i].drawEnemy(gBuffer, this, i%5);
@@ -293,21 +292,21 @@ public class GamePanel extends JPanel {
 			}
 			
 			if(live1 >= 0 && bp.stayed) {
-				//绘制boss�?�?
+				//绘制bos??
 				x = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/xue_" + ((2000-live1)/100+1) + ".png"));
 				gBuffer.drawImage(x, (int)(bp.getX_Y().getX()), (int)(bp.getX_Y().getY()-10), 250, 10, this);
 			}
 			
 			if(live >= 0) {
-				//绘制玩家飞机�?�?
+				//绘制玩家飞机??
 				x = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/xue_" + ((100-live)/5+1) + ".png"));
 				gBuffer.drawImage(x, 7, 7, 200, 20, this);
 			}
 												
-			g.drawImage(iBuffer, 0, 0, null);//把缓冲图像载入屏�?
+			g.drawImage(iBuffer, 0, 0, null);//把缓冲图像载入屏?
 		}
 		/**
-		 * 此方法在调用paint前调�?
+		 * 此方法在调用paint前调?
 		 */
 		public void update(Graphics g) {
 			paint(g);
@@ -332,7 +331,7 @@ public class GamePanel extends JPanel {
 		  }
 		}
 		/**
-		 * 此方法用于线程中对所绘制对象的位置与存在与否的判�?
+		 * 此方法用于线程中对所绘制对象的位置与存在与否的判?
 		 */
 		private void draw() {
 			// TODO Auto-generated method stub
@@ -353,7 +352,7 @@ public class GamePanel extends JPanel {
 			//敌机子弹移动
 			for(int i = 0; i < array1.size(); i++)
 			{
-				c.bullet_plane(array1.get(i), mp);//玩家飞机和敌机子弹碰�?
+				c.bullet_plane(array1.get(i), mp);//玩家飞机和敌机子弹碰?
 				array1.get(i).bulletMove1(array1, i);
 				
 			}
@@ -362,10 +361,10 @@ public class GamePanel extends JPanel {
 			for(int i = 0; i < e_array.length; i++)
 			{
 				e_array[i].enemyMove();
-				c.plane_enemy(mp, e_array[i]);//敌机与玩家飞机碰�?
+				c.plane_enemy(mp, e_array[i]);//敌机与玩家飞机碰?
 			}
 			
-			//玩家飞机子弹和敌机�?�boss碰撞判断
+			//玩家飞机子弹和敌机?boss碰撞判断
 			for(int i = 0; i < array.size(); i++)
 				for(int j = 0; j < e_array.length; j++) {
 					c.bullet_enemy(array.get(i), e_array[j]);
@@ -384,7 +383,7 @@ public class GamePanel extends JPanel {
 			repaint();//重画
 		}
 		/**
-		 * 地图位置的滚�?
+		 * 地图位置的滚?
 		 */
 		private void mapMove() {
 			
@@ -398,7 +397,7 @@ public class GamePanel extends JPanel {
 			
 		}
 		/**
-		 * 此方法是对暂停键P的监�?
+		 * 此方法是对暂停键P的监?
 		 */
 		private void adapter() {
 			addKeyListener(new KeyAdapter() {
@@ -413,13 +412,13 @@ public class GamePanel extends JPanel {
 				
 	}
 	/**
-	 * 此方法用于执行暂停与�?�?
+	 * 此方法用于执行暂停与??
 	 */
 	private void stop_start() {
 		if(isRunning == true)
 		{
-			isRunning = false;//设置线程不循�?
-			jb1.setText("�?�?(P)");//改变按钮文字
+			isRunning = false;//设置线程不循?
+			jb1.setText("继续(P)");//改变按钮文字
 			
 		} else {
 			isRunning = true;//设置线程循环

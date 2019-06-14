@@ -18,7 +18,6 @@ import javax.swing.JRadioButton;
 
 /**
  * 
- * @author 方银�?
  * 本类描述游戏结束弹出的对话框
  *
  */
@@ -30,55 +29,55 @@ public class Dialog extends JDialog {
 
 	public Dialog(JFrame j, int i) {
 		super(j, true);
-		setLayout(null);//设置布局管理器为�?
+		setLayout(null);//设置布局管理器为?
 		setResizable(false);//设置对话框不可拉
 		if(i == 1)
-			showFail(j);//显示挑战失败对话�?
+			showFail(j);//显示挑战失败对话?
 		else if(i == 2)
-			showSuccess(j);//显示挑战成功对话�?
+			showSuccess(j);//显示挑战成功对话?
 		else
-			showSetting(j);//显示设置对话�?
+			showSetting(j);//显示设置对话?
 		
-		setVisible(true);//设置对话框显�?
+		setVisible(true);//设置对话框显?
 		
 	}
 	
 	/**
-	 * 显示挑战失败对话�?
+	 * 显示挑战失败对话?
 	 * @param j
 	 */
 	private void showFail(JFrame j) {
 		setTitle("提示");
-		setBounds(j.getBounds().x+150, j.getBounds().y+150, 500, 300);//设置对话框位置大�?
+		setBounds(j.getBounds().x+150, j.getBounds().y+150, 500, 300);//设置对话框位置大?
 		//设置标签
-		jl01 = new JLabel("挑战失败！！�?");
+		jl01 = new JLabel("挑战失败！！");
 		jl01.setFont(new Font("acefont-family", Font.BOLD, 50));
-		jl01.setForeground(Color.blue);//设置前景�?
+		jl01.setForeground(Color.blue);//设置前景?
 		jl01.setBounds(65, 40, 400, 50);
 		add(jl01);
 		
-		jl02 = new JLabel("分数�?" + GamePanel.sum);
+		jl02 = new JLabel("分数?" + GamePanel.sum);
 		jl02.setFont(new Font("acefont-family", Font.BOLD, 30));
-		jl02.setForeground(Color.RED);//设置前景�?
+		jl02.setForeground(Color.RED);//设置前景?
 		jl02.setBounds(65, 120, 400, 50);
 		add(jl02);
 	}
 	
 	/**
-	 * 显示设置对话�?
+	 * 显示设置对话?
 	 * @param j
 	 */
 	private void showSetting(JFrame j) {
 		setTitle("设置");
-		setBounds(j.getBounds().x, j.getBounds().y+100, 800, 400);//设置对话框位置大�?
+		setBounds(j.getBounds().x, j.getBounds().y+100, 800, 400);//设置对话框位置大?
 		
 		//选择战机标签
-		jl01 = new JLabel("选择战机�?");
+		jl01 = new JLabel("选择战机");
 		jl01.setFont(new Font("acefont-family", Font.BOLD, 15));
 		jl01.setBounds(10, 10, 80, 20);
 		add(jl01);
 		
-		//飞机单�?�按�?
+		//飞机单?按?
 		ImageIcon i01 = new ImageIcon(getClass().getResource("/images/Plane01.png"));
 		int w01 = i01.getIconWidth(), h01 = i01.getIconHeight();
 		jr01 = new JRadioButton("1");
@@ -180,7 +179,7 @@ public class Dialog extends JDialog {
 		jima05.setBounds(130+w01+w02+w03+w04, 60, w05, h05);
 		add(jima05);
 		
-		//将按钮加进按钮组�?
+		//将按钮加进按钮组?
 		ButtonGroup bg = new ButtonGroup();
 		bg.add(jr01);
 		bg.add(jr02);
@@ -189,12 +188,12 @@ public class Dialog extends JDialog {
 		bg.add(jr05);
 		
 		//音效标签
-		jl02 = new JLabel("音效�?");
+		jl02 = new JLabel("音效");
 		jl02.setFont(new Font("acefont-family", Font.BOLD, 15));
 		jl02.setBounds(10, 80+w01, 50, 20);
 		add(jl02);
 		
-		//音效选项多�?�按�?
+		//音效选项多?按?
 		jcb1 = new JCheckBox("背景声音");
 		jcb1.setBounds(20, 120+w01, 80, 20);
 		if(PlaySound.b[0])
@@ -215,7 +214,7 @@ public class Dialog extends JDialog {
 				}
 		});
 		
-		jcb2 = new JCheckBox("按键�?");
+		jcb2 = new JCheckBox("按键");
 		jcb2.setBounds(20, 160+w01, 80, 20);
 		if(PlaySound.b[1])
 			jcb2.setSelected(true);
@@ -229,7 +228,7 @@ public class Dialog extends JDialog {
 			}
 		});
 		
-		jcb3 = new JCheckBox("敌机爆炸�?");
+		jcb3 = new JCheckBox("敌机爆炸");
 		jcb3.setBounds(120, 120+w01, 100, 20);
 		if(PlaySound.b[2])
 			jcb3.setSelected(true);
@@ -243,7 +242,7 @@ public class Dialog extends JDialog {
 			}
 		});
 		
-		jcb4 = new JCheckBox("玩家飞机和boss爆炸�?");
+		jcb4 = new JCheckBox("玩家飞机和boss爆炸");
 		jcb4.setBounds(120, 160+w01, 170, 20);
 		if(PlaySound.b[3])
 			jcb4.setSelected(true);
@@ -259,23 +258,23 @@ public class Dialog extends JDialog {
 	}
 
 	/**
-	 * 显示挑战成功对话�?
+	 * 显示挑战成功对话?
 	 * @param j
 	 */
 	private void showSuccess(JFrame j) {
 		setTitle("提示");
-		setBounds(j.getBounds().x+150, j.getBounds().y+150, 500, 300);//设置对话框位置大�?
+		setBounds(j.getBounds().x+150, j.getBounds().y+150, 500, 300);//设置对话框位置大?
 		
 		//设置标签
-		jl01 = new JLabel("挑战成功！！�?");
+		jl01 = new JLabel("挑战成功！！");
 		jl01.setFont(new Font("acefont-family", Font.BOLD, 50));
-		jl01.setForeground(Color.blue);//设置前景�?
+		jl01.setForeground(Color.blue);//设置前景?
 		jl01.setBounds(65, 40, 400, 50);
 		add(jl01);
 		
-		jl02 = new JLabel("分数�?" + GamePanel.sum);
+		jl02 = new JLabel("分数" + GamePanel.sum);
 		jl02.setFont(new Font("acefont-family", Font.BOLD, 30));
-		jl02.setForeground(Color.RED);//设置前景�?
+		jl02.setForeground(Color.RED);//设置前景?
 		jl02.setBounds(65, 120, 400, 50);
 		add(jl02);
 	}

@@ -6,14 +6,13 @@ import java.net.URISyntaxException;
 
 /**
  * 
- * @author 方银�?
  * 本类是主类，其中有main方法
  *
  */
 
 public class PanelFrame {
 
-	static MainPanel e1;//主界面对�?
+	static MainPanel e1;//主界面对?
 	static PlaySound p;//声音对象
 	
 	public static void main(String[] args) throws URISyntaxException {

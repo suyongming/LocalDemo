@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 
 /**
  * 
- * @author 方银�?
  * 本类描述boss飞机
  *
  */

@@ -13,8 +13,7 @@ import javax.swing.JPanel;
 
 /**
  * 
- * @author 方银�?
- * 本类是主界面�?
+ * 本类是主界面?
  *
  */
 
@@ -30,7 +29,7 @@ public class MainPanel extends JFrame {
 		
 		setSize(800, 600);//设置窗体大小
 		
-		setLayout(null);//清除布局管理�?
+		setLayout(null);//清除布局管理?
 				
 		showBackground();//设置背景
 		
@@ -69,7 +68,7 @@ public class MainPanel extends JFrame {
 				
 				int key = e.getKeyCode();
 				
-				//监听向上或向下按�?
+				//监听向上或向下按?
 				if(key == KeyEvent.VK_DOWN || key == KeyEvent.VK_UP) {
 					label03.setVisible(!label03.isVisible());
 					label04.setVisible(!label04.isVisible());
@@ -128,13 +127,13 @@ public class MainPanel extends JFrame {
 	 */
 	private void showLabel() {
 		
-		 //指示的飞机图�?
+		 //指示的飞机图?
 	   	 ImageIcon icon = new ImageIcon(getClass().getResource("/images/point.png"));
 		
 		 //设置标签
-		 label01 = new JLabel("�?始游�?");
+		 label01 = new JLabel("开始游戏");
 		 label01.setFont(new Font("acefont-family", Font.BOLD, 50));
-		 label01.setForeground(Color.blue);//设置前景�?
+		 label01.setForeground(Color.blue);//设置前景?
 		 label01.setBounds(220, 340, 400, 120);
 	 	
 		 label02 = new JLabel("设置");

@@ -13,7 +13,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * 
- * @author 方银�?
  * 本类描述声音播放
  *
  */

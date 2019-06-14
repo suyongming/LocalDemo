@@ -8,7 +8,6 @@ import java.awt.Toolkit;
 
 /**
  * 
- * @author 方银�?
  * 本来描述敌机
  *
  */
