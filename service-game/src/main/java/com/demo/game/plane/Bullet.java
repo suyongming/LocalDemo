@@ -18,7 +18,7 @@ public class Bullet {
 	private int bullet_x, bullet_y;//子弹坐标
 	private final int STEP = 5;//玩家飞机子弹速度
 	private final int STEP1 =5;//敌机子弹速度
-	private Image bullet01, bullet02;//弹图�?
+	private Image bullet01, bullet02;//弹图 ?
 	private final int TIME = 200;//玩家飞机子弹发射间隔时间
 	private final int TIME1 = 5000;//敌机子弹发射间隔时间
 	static long before_time;//过去绘制玩家飞机子弹时间
@@ -27,7 +27,7 @@ public class Bullet {
 	
 	public Bullet(int x, int y) {
 		
-		//初始化坐�?
+		//初始化坐 ?
 		bullet_x = x;
 		bullet_y = y;
 		
@@ -60,12 +60,12 @@ public class Bullet {
     	{
     		drawBullet(g, c, 1);
     		array.add(this);//子弹对象加进数组
-			before_time = now_time;//将现在时间作为过去时�?
+			before_time = now_time;//将现在时间作为过去时 ?
 			
     	}
 	}
     /**
-     * 敌机子弹绘制方法，包括时间间隔判�?
+     * 敌机子弹绘制方法，包括时间间隔判 ?
      * @param array
      * @param g
      * @param c
@@ -77,7 +77,7 @@ public class Bullet {
     	{
     		drawBullet(g, c, 2);
     		array.add(this);//子弹对象加进数组
-			before_time1[i] = now_time;//将现在时间作为过去时�?
+			before_time1[i] = now_time;//将现在时间作为过去时 ?
 			
     	}
 	}

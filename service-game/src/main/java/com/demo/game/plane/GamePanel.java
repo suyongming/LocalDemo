@@ -423,7 +423,7 @@ public class GamePanel extends JPanel {
 		} else {
 			isRunning = true;//设置线程循环
 			Thread d = new Thread((Runnable) jp);//创建线程
-			d.start();//�?启线�?
+			d.start();// ?启线 ?
 			jb1.setText("暂停(P)");//改变按钮文字
 		}
 	}

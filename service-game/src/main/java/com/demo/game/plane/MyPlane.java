@@ -18,9 +18,9 @@ import java.awt.event.KeyEvent;
 public class MyPlane {
 
 	private int myPlane_x = 230, myPlane_y = 450;//玩家飞机坐标
-	private Image planePic[];//存储飞机图片的数�?
+	private Image planePic[];//存储飞机图片的数 ?
 	private final int STEP = 7;//飞机速度
-	private boolean isPress01, isPress02, isPress03, isPress04;//记录按键状�??
+	private boolean isPress01, isPress02, isPress03, isPress04;//记录按键状 ??
 	boolean stayed = true;//玩家飞机生存标识
 	private Break b;//爆炸图片对象
 	int id;//爆炸图片ID

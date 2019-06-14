@@ -13,7 +13,7 @@ public class Collide {
 	private PlaySound p;
 	
 	/**
-	 * 玩家飞机子弹与敌机碰撞方�?
+	 * 玩家飞机子弹与敌机碰撞方 ?
 	 * @param b
 	 * @param e
 	 */
@@ -38,11 +38,11 @@ public class Collide {
 				p.start();
 			}
 			
-			GamePanel.sum += 100;//增加分数，每架飞�?100
+			GamePanel.sum += 100;//增加分数，每架飞 ?100
 		}
 	}
 	/**
-	 * 玩家飞机与敌机碰撞方�?
+	 * 玩家飞机与敌机碰撞方 ?
 	 * @param m
 	 * @param e
 	 */
@@ -74,7 +74,7 @@ public class Collide {
 		}
 	}
 	/**
-	 * 玩家飞机和敌机子弹碰�?
+	 * 玩家飞机和敌机子弹碰 ?
 	 * @param b
 	 * @param e
 	 */
@@ -107,7 +107,7 @@ public class Collide {
 		}
 	}
 	/**
-	 * boss与玩家飞机碰�?
+	 * boss与玩家飞机碰 ?
 	 * @param b
 	 * @param m
 	 */
@@ -163,7 +163,7 @@ public class Collide {
 					
 			    }
 				GamePanel.live1 = 0;//boss飞机生命减少
-				GamePanel.sum += 500;//分数�?500
+				GamePanel.sum += 500;//分数 ?500
 			
 			} else
 				GamePanel.live1 -= 1;//boss飞机生命减少

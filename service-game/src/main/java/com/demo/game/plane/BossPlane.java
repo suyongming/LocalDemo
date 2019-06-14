@@ -22,10 +22,10 @@ public class BossPlane {
 	int id;//爆炸图片ID
 	
 	BossPlane() {
-		//坐标初始�?
+		//坐标初始 ?
 		bossPlane_x = 175;
 		bossPlane_y = -500;
-		//图片初始�?
+		//图片初始 ?
 		ima = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/boss.png"));
 		
 		stayed = true;
@@ -56,14 +56,14 @@ public class BossPlane {
 		if(bossPlane_y < 80)
 			bossPlane_y += step;
 		else
-			switch (position) {//让飞机曲线运�?
-			case 0://向右下移�?
+			switch (position) {//让飞机曲线运 ?
+			case 0://向右下移 ?
 				bossPlane_y += step;
 				bossPlane_x += step;
 				if(bossPlane_x == GamePanel.MAP_WIDTH-GamePanel.BOSS_WIDTH)
 					position++;
 				break;
-			case 1://向左下移�?
+			case 1://向左下移 ?
 				if((point/700)%2 == 0) {
 					bossPlane_y += 3;
 					bossPlane_x -= step;
@@ -74,7 +74,7 @@ public class BossPlane {
 				if(bossPlane_y >= GamePanel.MAP_HEIGHT-GamePanel.BOSS_HEIGHT)
 					position++;
 				break;
-			case 2://向左上移�?
+			case 2://向左上移 ?
 				if((point/700)%2 == 0) {
 					bossPlane_y -= step;
 					bossPlane_x -= step;
@@ -85,7 +85,7 @@ public class BossPlane {
 				if(bossPlane_x <= 0)
 					position++;
 				break;
-			case 3://向右上移�?
+			case 3://向右上移 ?
 				bossPlane_x += step;
 				if(bossPlane_x == 175)
 					position = -1;

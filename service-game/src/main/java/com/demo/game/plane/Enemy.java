@@ -23,7 +23,7 @@ public class Enemy {
 	private int id;//爆炸图片ID
 
 	public Enemy(int y) {
-		//敌机坐标初始�?
+		//敌机坐标初始 ?
 		enemy_x = (int) (Math.random()*500);
 		enemy_y0 = enemy_y = y;
 				
@@ -62,13 +62,13 @@ public class Enemy {
 		if(enemy_y > GamePanel.MAP_HEIGHT || stayed == false)
 		{
 			
-			if(GamePanel.time >= 2500) {//50秒过后敌机不在出�?
+			if(GamePanel.time >= 2500) {//50秒过后敌机不在出 ?
 				enemy_x = 0;
 				enemy_y = GamePanel.MAP_HEIGHT+GamePanel.PLANE_SIZE;
 			} else {
 				enemy_x = (int) (Math.random()*500);
 				enemy_y = enemy_y0;
-				stayed = true;//敌机设置为生存状�?
+				stayed = true;//敌机设置为生存状 ?
 			}
 		} else
 			enemy_y += STEP;

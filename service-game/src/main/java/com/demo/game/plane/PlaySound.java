@@ -20,10 +20,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class PlaySound {
 
 	private File file;//音频文件
-	private AudioInputStream stream;//音频输入�?
+	private AudioInputStream stream;//音频输入?
 	private AudioFormat format;//音频格式
-	private DataLine.Info info;//音频行信�?
-	private Clip clip;//音频�?
+	private DataLine.Info info;//音频行信?
+	private Clip clip;//音频?
 	static boolean[] b = new boolean[]{true, true, true, true};//控制声音播放
 	
 	/**
@@ -33,7 +33,7 @@ public class PlaySound {
 	void open(String s) {
 		file = new File(s);//音频文件对象
 		try {
-			stream = AudioSystem.getAudioInputStream(file);//音频输入流对�?
+			stream = AudioSystem.getAudioInputStream(file);//音频输入流对?
 			format = stream.getFormat();//音频格式对象
 		} catch (UnsupportedAudioFileException e) {
 			// TODO Auto-generated catch block
@@ -48,9 +48,9 @@ public class PlaySound {
 	 * 建立播放音频的音频行
 	 */
 	void play() {
-		info = new DataLine.Info(Clip.class, format);//音频行信息对�?
+		info = new DataLine.Info(Clip.class, format);//音频行信息对?
 		try {
-			clip = (Clip) AudioSystem.getLine(info);//音频行对�?
+			clip = (Clip) AudioSystem.getLine(info);//音频行对?
 			clip.open(stream);//将音频数据读入音频行
 		} catch (LineUnavailableException e) {
 			// TODO Auto-generated catch block
@@ -69,10 +69,10 @@ public class PlaySound {
 	}
 	
 	/**
-	 * �?始播�?
+	 * ?始播?
 	 */
 	void start() {
-		clip.start();//播放音频�?
+		clip.start();//播放音频?
 	}
 	
 	/**
