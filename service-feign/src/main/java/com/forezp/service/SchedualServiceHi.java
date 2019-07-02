@@ -1,5 +1,6 @@
 package com.forezp.service;
 
+import com.forezp.service.hystric.SchedualServiceHiHystric;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
