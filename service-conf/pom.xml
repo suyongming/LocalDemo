@@ -9,7 +9,6 @@
     <modules>
         <module>config-server</module>
         <module>config-client</module>
-        <module>service-conf</module>
     </modules>
     <name>service-conf</name>
     <description>Demo project for Spring Boot</description>

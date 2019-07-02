@@ -1,4 +1,4 @@
-package com.forezp.serviceoriginconf;
+package com.forezp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +7,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ServiceOriginConfApplicationTests {
+public class ConfigClientApplicationTests {
 
-    @Test
-    public void contextLoads() {
-    }
+	@Test
+	public void contextLoads() {
+	}
 
 }
