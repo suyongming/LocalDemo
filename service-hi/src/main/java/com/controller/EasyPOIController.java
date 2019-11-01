@@ -7,6 +7,7 @@ import com.entity.base.BaseEntity;
 import com.exceptions.CustomException;
 import com.util.ExcelUtils;
 import com.util.RandomValue;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.*;
 @EnableEurekaClient
 @RestController
 @RequestMapping("/easyPOI")
+@Slf4j
 public class EasyPOIController {
 
     /**
@@ -31,15 +33,22 @@ public class EasyPOIController {
     }
 
     /**
-     * 2.通用导出 根据RESTful风格 到处相关业务 的嵌套Excel 最终版
+     * 2.通用导出 根据RESTful风格 导出相关业务 的嵌套Excel 最终版
      *
-     * @PathVariable pojo 要到处的业务模块
+     * @PathVariable pojo 要导出的业务模块
      * @Param conditions 动态条件 需要解密处理
      */
-    //    @PostMapping("/export/{pojo}"),JSONObject conditions
-    @GetMapping("/export/{pojo}")
+    //    @PostMapping("/export/{pojo}")
+    @PostMapping("/export/{pojo}")
     public void exportByService(
-            @PathVariable(value="pojo") String pojoName,HttpServletResponse response){
+            @PathVariable(value="pojo") String pojoName,
+            @RequestBody JSONObject conditions,
+            HttpServletResponse response){
+
+        if(!conditions.isEmpty()){
+            log.info(conditions.toJSONString());
+            return;
+        }
 
         Class clazz = null;
         try {
@@ -59,10 +68,6 @@ public class EasyPOIController {
             e.printStackTrace();
         }
 
-
-
-
-//        ExcelUtils.exportExcel(list, "测试title", "sheet1", ExcelDemoEntity.class, "测试.xls", response);
     }
 
     private static List<User> getUserList() {
