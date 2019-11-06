@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @SpringBootApplication
 @EnableEurekaClient
 @RestController
-@ComponentScan("com.controller")
+@ComponentScan({"com.controller","com.service.*"})
 @MapperScan("com.dao")
 public class ServiceHiApplication {
 

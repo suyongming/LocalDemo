@@ -1,6 +1,7 @@
 package com.entity;
 
 import cn.afterturn.easypoi.excel.annotation.Excel;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,8 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-public class User {
+@TableName("sym_market.order_master")
+public class UserEntity {
 
     @Excel(name = "id" ,orderNum = "0")
     private String userId;

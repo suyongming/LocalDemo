@@ -2,7 +2,7 @@ package com.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.entity.ExcelDemoEntity;
-import com.entity.User;
+import com.entity.UserEntity;
 import com.entity.base.BaseEntity;
 import com.exceptions.CustomException;
 import com.util.ExcelUtils;
@@ -12,7 +12,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.sql.Timestamp;
 import java.util.*;
 
 @EnableEurekaClient
@@ -70,20 +69,20 @@ public class EasyPOIController {
 
     }
 
-    private static List<User> getUserList() {
-        List<User> list = new ArrayList();
+    private static List<UserEntity> getUserList() {
+        List<UserEntity> list = new ArrayList();
 
 
         for (int i = 0; i < 20; i++) {
             Map ranObj = RandomValue.getAddress();
-            User user = new User();
+            UserEntity userEntity = new UserEntity();
 
-            user.setUserId(UUID.randomUUID().toString());
-            user.setUserName(ranObj.get("email")+"");
-            user.setPassword("******");
-            user.setLastModifyTime(new Date());
-            user.setCreate(new Date());
-            list.add(user);
+            userEntity.setUserId(UUID.randomUUID().toString());
+            userEntity.setUserName(ranObj.get("email")+"");
+            userEntity.setPassword("******");
+            userEntity.setLastModifyTime(new Date());
+            userEntity.setCreate(new Date());
+            list.add(userEntity);
 
         }
         return list;
