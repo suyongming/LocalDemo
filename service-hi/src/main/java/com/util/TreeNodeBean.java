@@ -135,7 +135,7 @@ public class TreeNodeBean<T extends TreeModel>{
 
         }else{
             //找到该节点 开始删除(修改当前节点)
-            if(treeNodeBean.getLiftChild() != null && treeNodeBean.getLiftChild() != null){
+            if(treeNodeBean.getLiftChild() != null){
                 //如果删除的节点俩儿子都在
                 String oldParentCode = treeNodeBean.getParentCode();
                 TreeNodeBean oldRightChild = treeNodeBean.getRightChild();
