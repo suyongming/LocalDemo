@@ -10,7 +10,7 @@ spring:
     name: service-hi
 
   datasource:
-     url: jdbc:mysql://127.0.0.1:3306/demo
+     url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&useSSL=true
      username: suyongming
      password: 476231418
      driver-class-name: com.mysql.jdbc.Driver
