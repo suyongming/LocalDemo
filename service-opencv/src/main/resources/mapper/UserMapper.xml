@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper" >
+    <resultMap id="resultBean" type="com.entity.User">
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="create" column="crater_time"/>
+        <result property="lastModifyTime" column="last_modify_time"/>
+    </resultMap>
+
+    <select id="getUser" resultMap="resultBean" parameterType="java.lang.String">
+        select * from tb_user where password = #{password}
+    </select>
+
+    <insert id="addUser" parameterType="com.entity.User">
+        insert into tb_user(user_id,user_name,password,creater_time,last_modify_time)
+        values(#{userId},#{userName},#{password},now(),now())
+    </insert>
+</mapper>
