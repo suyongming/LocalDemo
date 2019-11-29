@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 @EnableEurekaClient
 @RestController
 @RequestMapping("/easyPOI")
 @Slf4j
 public class EasyPOIController {
+    AtomicLong atomicLong = new AtomicLong(1);
 
     /**
      * 1.普通easyPOI导出
