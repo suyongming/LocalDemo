@@ -50,7 +50,7 @@
 
 
     7.Java中Synchronized关键字的内存语义是什么？
-        
+
 
 
     8.Java中Volatile关键字的内存语义是什么？
@@ -66,6 +66,24 @@
 
 二、Synchronized问题
     Synchronized 用过吗，说说原理是什么？
+        Synchronized 是由 JVM 实现的一种实现互斥同步的一种方式
+
+        Synchronized 是由 JVM 实现的一种实现互斥同步的一种方式，
+        如果你查看被 Synchronized 修饰过的程序块编译后的字节码，
+        会发现，被 Synchronized 修饰过的程序块，
+        在编译前后被编译器生成了 monitorenter 和 monitorexit 两个字节码指令。
+
+        这两个指令是什么意思呢？
+
+        在虚拟机执行到 monitorenter 指令时，首先要尝试获取对象的锁：
+
+        如果这个对象没有锁定，或者当前线程已经拥有了这个对象的锁，
+        把锁的计数器 +1；当执行 monitorexit 指令时将锁计数器 -1；
+        当计数器为 0 时，锁就被释放了。
+
+        如果获取对象失败了，那当前线程就要阻塞等待，直到对象锁被另外一个线程释放为止。
+
+        Java 中 Synchronize 通过在对象头设置标记，达到了获取锁和释放锁的目的。
 
     刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？
 
