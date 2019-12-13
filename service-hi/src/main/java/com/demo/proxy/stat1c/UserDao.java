@@ -1,4 +1,4 @@
-package com.demo.staticproxy;
+package com.demo.proxy.stat1c;
 
 public class UserDao implements IUserDao{
     @Override

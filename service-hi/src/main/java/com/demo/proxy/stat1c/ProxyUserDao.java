@@ -1,4 +1,4 @@
-package com.demo.staticproxy;
+package com.demo.proxy.stat1c;
 
 public class ProxyUserDao implements IUserDao{
     //接收保存目标对象

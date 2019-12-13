@@ -1,0 +1,163 @@
+activeMQ面试总结activeMQ面试总结
+
+1. 大量的消息每页被消费，能否发生oom异常？
+1. 可以控制每个消息队列中数据的大小，不允许无线填充数据，避免该队列多大，导致过度消耗系统资源问题； 可以控制队列的内存大小；
+
+
+2. activeMQ数据丢失怎么办？
+
+可以使用对数据进行持久化JDBC，AMQ(日志文件)，KahaDB和LevelDB，
+
+
+
+
+3. activeMQ如何持久化数据？
+*** 准确答案：http://www.360doc.com/content/11/1027/19/1542811_159664188.shtml
+            本文只介绍三种方式,分别是持久化为文件，MYSql，Oracle。
+
+
+***很准确的答案：https://www.jianshu.com/p/deb1816271d1
+以mysql为例子，说明如何持久化，并解释了3张表机构；
+
+
+
+**** 更准确的答案：	https://www.jianshu.com/p/43cd33dc96af
+
+        提到了多种持久化方案的优缺点;
+ActiveMQ的消息持久化机制有JDBC，AMQ(日志文件)，KahaDB和LevelDB
+KahaDB是从ActiveMQ 5.4开始默认的持久化插件
+从ActiveMQ 5.6版本之后，又推出了LevelDB的持久化引擎。目前默认的持久化方式仍然是KahaDB，不过LevelDB持久化性能高于KahaDB，可能是以后的趋势。
+在ActiveMQ 5.9版本提供了基于LevelDB和Zookeeper的数据复制方式，用于Master-slave方式的首选数据复制方案。
+
+
+
+
+*其他參考： http://www.360doc.com/content/11/1027/19/1542811_159664912.shtml
+
+利用消息队列的异步策略，可以从很大程序上缓解程序的压力，但是，如果MQ所在的机器down机了,又如果队列中的数据不是持久的就会发生数据丢失，后果是可想而知的， 所以消息的持久化是不可不讨论的话题。
+
+
+方式一：利用mysql持久化activeMQ数据
+1）改动部分主要是设置了mysql的datasource声明, 还有就是采用mysql作为persistenceAdapter,并声明如下；
+
+    <bean id="mysql-ds" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    				<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    				<property name="url" value="jdbc:mysql://localhost:3306/activemq?relaxAutoCommit=true"/>
+    				<property name="username" value="root"/>
+    				<property name="password" value=""/>
+    				<property name="maxActive" value="200"/>
+    				<property<strong> </strong>name="poolPreparedStatements" value="true"/>
+    			</bean>
+
+
+    		            <persistenceAdapter>
+    	                                      <jdbcPersistenceAdapter dataSource="#mysql-ds"/>
+    	                         </persistenceAdapter>
+
+2）把数据库的驱动放入ActiveMQ的lib中，使其能够访问相应的数据库，关于数据库的表结构，ActiveMQ会自动创建，但是前提是当ActiveMQ启动以后，声明的数据库要是存在的。
+          测试的时候发现以上条件都满足ActiveMQ还是会抛异常，看了一下异常，是有一张表（activemq_acks）创建的时候出了问题，自己手动创建后好了，把表结构列出来。
+3）当消息发送至ActiveMQ时，数据就被持久化到mysql了，如果消息被消费，数据会自动被删除，down机后重启没影响，有一点不好的是,这个有点拖数据库，我在本地的mysql,一开启ActiveMQ, 数据库就会变得很慢，不过这个只是在本地的机子上，想必实际应用时应该好很多。
+
+4. queue 与 topic 区别
+
+    参考： https://blog.csdn.net/gaohuanjie/article/details/42197703
+
+
+
+      1、点对点（point-to-point，简称PTP）Queue消息传递模型：
+
+        在该消息传递模型下，一个消息生产者向消息服务器端一个特定的队列发送消息，一个消费者从该队列中读取消息。在这种模型下，消息生产者知道消息消费者的队列并直接将消息发送到消息消费者的队列。这种模型的特点为：
+
+        能够保证数据安全；
+
+    2、发布/订阅（publish/subscribe，简称pub/sub）Topic消息传递模型：
+
+        在该消息传递模型下，一个消息发布者向一个特定的消息主题发布消息，0或多个对此消息主题感兴趣的并且处于活动状态的消息订阅者或者建立了持久订阅的消息订阅者才可以接收到所发布的消息。
+       数据容易丢失；
+
+5. RocketMQ特點：
+作为一款分布式消息引擎，RocketMQ有如下特性：
+低延迟、高并发：99.6%以上的响应延迟在1毫秒以内
+面向金融：满足跟踪和审计的高可用性
+工业级适用：可确保万亿量级的消息发送
+中立性：支持多种消息传递协议，如JMS和OpenMessaging
+性能可靠：给予足够的磁盘空间，消息可以累积存放而没有性能损失。
+
+
+6. activeMQ发送消息的方式有哪些？
+
+
+同步
+异步
+
+参考一： https://blog.csdn.net/asdfsadfasdfsa/article/details/53583741
+参考二： https://blog.csdn.net/QH_JAVA/article/details/61932295
+
+消息通信的基本方式有两种：
+1、同步方式
+两个通信应用服务之间必须要进行同步，两个服务之间必须都是正常运行的。发送程序和接收程序都必须一直处于运行状态，并且随时做好相互通信的准备。
+发送程序首先向接收程序发起一个请求，称之为发送消息，发送程序紧接着就会堵塞当前自身的进程，不与其他应用进行任何的通信以及交互，等待接收程序的响应，待发送消息得到接收程序的返回消息之后会继续向下运行，进行下一步的业务处理。
+2、异步方式
+两个通信应用之间可以不用同时在线等待，任何一方只需各自处理自己的业务，比如发送方发送消息以后不用登录接收方的响应，可以接着处理其他的任务。也就是说发送方和接收方都是相互独立存在的，发送方只管方，接收方只能接收，无须去等待对方的响应。
+Java中JMS就是典型的异步消息处理机制，JMS消息有两种类型：点对点、发布/订阅。
+
+
+7. activeMQ如何调优
+activeMQ如何调优有两种简单方式:
+1. 使用非持久化消息;
+
+2. 需要确保消息发送成功时使用事务来将消息分批组合.
+public void sendTransacted() throws JMSException {
+        ActiveMQConnectionFactory cf = new ActiveMQConnectionFactory();
+        Connection connection = cf.createConnection();
+        connection.start();
+        Session session = connection.createSession(true, Session.SESSION_TRANSACTED);
+        Topic topic = session.createTopic("Test.Transactions");
+        MessageProducer producer = session.createProducer(topic);
+        int count = 0;
+        for (int i = 0; i < 1000; i++) {
+            Message message = session.createTextMessage("message " + i);
+            producer.send(message);
+            if (i != 0 && i % 10 == 0) {
+                session.commit();
+            }
+        }
+
+    }
+
+    public void sendNonTransacted() throws JMSException {
+        ActiveMQConnectionFactory cf = new ActiveMQConnectionFactory();
+        Connection connection = cf.createConnection();
+        connection.start();
+        // create a default session (no transactions)
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWELDGE);
+        Topic topic = session.createTopic("Test.Transactions");
+        MessageProducer producer = session.createProducer(topic);
+        int count = 0;
+        for (int i = 0; i < 1000; i++) {
+            Message message = session.createTextMessage("message " + i);
+            producer.send(message);
+        }
+
+    }
+
+
+activeMQ系列内容： https://blog.csdn.net/u012758088/article/category/7179327
+
+影响ActiveMQ性能的几个重要因素 ： http://setting.iteye.com/blog/989593
+
+        **** ActiveMQ性能调优 http://zcf9916.iteye.com/blog/2356128
+
+
+8. activeMQ端口号
+端口号:61616
+
+
+9. jsm的同步与异步
+消息通信的基本方式有两种：
+1、同步方式
+两个通信应用服务之间必须要进行同步，两个服务之间必须都是正常运行的。发送程序和接收程序都必须一直处于运行状态，并且随时做好相互通信的准备。
+发送程序首先向接收程序发起一个请求，称之为发送消息，发送程序紧接着就会堵塞当前自身的进程，不与其他应用进行任何的通信以及交互，等待接收程序的响应，待发送消息得到接收程序的返回消息之后会继续向下运行，进行下一步的业务处理。
+2、异步方式
+两个通信应用之间可以不用同时在线等待，任何一方只需各自处理自己的业务，比如发送方发送消息以后不用登录接收方的响应，可以接着处理其他的任务。也就是说发送方和接收方都是相互独立存在的，发送方只管方，接收方只能接收，无须去等待对方的响应。
+Java中JMS就是典型的异步消息处理机制，JMS消息有两种类型：点对点、发布/订阅。
