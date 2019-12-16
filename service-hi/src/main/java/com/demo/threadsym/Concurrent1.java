@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 @Slf4j
-public class 模拟并发 {
+public class Concurrent1 {
     // 请求总数
     public static int clientTotal = 5000;
     // 同时并发执行的线程数
