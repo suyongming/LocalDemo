@@ -2,7 +2,7 @@ package com.demo.jvm;
 
 /**
  * @author suyongming
- * @date ����ʱ�䣺2020/3/26 20:21
+ * @date 2020/3/26 20:21
  */
 public class Demo3 {
     public int math() {
